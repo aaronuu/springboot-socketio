@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>socket</title>
+</head>
+<body>
+<button type="button" onclick="sendMessage()">message</button>
+<button type="button" onclick="sendDisconnect()">disconnect</button>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io('http://localhost:9099/message?TOKEN=123123123');
+	
+	socket.on('message', (data)=>{
+		console.log(data);
+	});
+
+	function sendMessage(){
+		var jsonObject = {"message": "bcbf7dc8-aeae-4c1c-a8cf-2ede4ad3923e", "ts": 1558423624644};
+		socket.emit('message', jsonObject, 
+        function(data) {  //处理AckRequest返回的消息
+            console.log(data.ts);
+        });
+	}
+
+	function sendDisconnect() {
+		socket.disconnect();
+	}
+
+</script>
+</body>
+</html>
