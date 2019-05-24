@@ -2,6 +2,7 @@ package cn.sonicshield.socketio.config;
 
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
+import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,7 @@ public class NettySocketConfig {
     // 握手协议参数使用JWT的Token认证方案
     config.setAuthorizationListener(data -> {
       String token = data.getSingleUrlParam(TOKEN);
-      return null != token;
+      return !Strings.isNullOrEmpty(token);
     });
     return new SocketIOServer(config);
   }
