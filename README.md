@@ -2,4 +2,4 @@
 
 ### 简介
 
-使用 spring-boot,netty-socketio,namespace
+Springboot 集成 Netty Socket.io 实现实时通讯，使用 Namespace 区分业务
